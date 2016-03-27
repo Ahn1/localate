@@ -1,0 +1,31 @@
+{
+  "name": "localate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"grunt && node ./dist/server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ahn1/localate.git"
+  },
+  "author": "Alexander Bogoslawski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ahn1/localate/issues"
+  },
+  "homepage": "https://github.com/Ahn1/localate#readme",
+  "dependencies": {
+    "babel-plugin-syntax-async-functions": "^6.5.0",
+    "babel-plugin-transform-regenerator": "^6.6.5",
+    "grunt": "^0.4.5",
+    "koa": "^2.0.0",
+    "load-grunt-tasks": "^3.4.1"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.6.0",
+    "grunt-babel": "^6.0.0"
+  }
+}
