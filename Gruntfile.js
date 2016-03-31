@@ -21,8 +21,7 @@ module.exports = function(grunt) {
 
 
     webpack: {
-      someName: {
-        // webpack options
+      dist: {
         entry: "./web/app/index.js",
         output: {
           path: "dist/web/",
@@ -36,11 +35,25 @@ module.exports = function(grunt) {
           reasons: true
         },
       }
+    },
+
+    postcss: {
+      options: {
+        map: true,
+
+        processors: [
+          require('cssnano')() // minify the result
+        ]
+      },
+      dist: {
+        src: 'web/style/*.css',
+        dest: 'dist/style/'
+      }
     }
 
   });
 
-  grunt.registerTask('default', ['babel','webpack']);
-  grunt.registerTask('web', ['webpack']);
+  grunt.registerTask('default', ['babel', 'webpack','postcss']);
+  grunt.registerTask('web', ['webpack','postcss']);
 
 };

@@ -7,8 +7,6 @@ import logger from 'koa-logger'
 
 import gzip from  'koa-gzip';
 
-
-
 // Koa application is now a class and requires the new operator.
 const app = new Koa();
 
