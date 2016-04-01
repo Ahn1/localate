@@ -4,11 +4,6 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     babel: {
-      options: {
-        sourceMap: true,
-        presets: ['es2015'],
-        plugins: ["syntax-async-functions", "transform-regenerator"]
-      },
       dist: {
         files: [{
           expand: true,
@@ -18,22 +13,29 @@ module.exports = function(grunt) {
         }]
       }
     },
-
-
     webpack: {
       dist: {
-        entry: "./web/app/index.js",
+        entry: "./web/app/entry.js",
         output: {
           path: "dist/web/",
           filename: "app.js",
         },
-
         stats: {
           // Configure the console output
           colors: true,
           modules: true,
           reasons: true
         },
+        module: {
+          loaders: [{
+            test: /\.jsx?$/,
+            exclude: /(node_modules|bower_components)/,
+            loader: 'babel'
+          }]
+        },
+        resolve: {
+          extensions: ['', '.js']
+        }
       }
     },
 
@@ -57,7 +59,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('server', ['babel']);
-  grunt.registerTask('default', ['babel', 'webpack','postcss']);
-  grunt.registerTask('web', ['webpack','postcss']);
+  grunt.registerTask('default', ['babel', 'webpack', 'postcss']);
+  grunt.registerTask('web', ['webpack', 'postcss']);
 
 };

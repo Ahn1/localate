@@ -1,6 +1,11 @@
+import ReactDOM from 'react-dom'
 
-tld.getDomain('mail.google.co.uk');
+import Mainview from './controls/Mainview.js'
 
-var sub = tld.getSubdomain(window.location.href);
+ReactDOM.render(<Mainview />, document.getElementById('reactRoot'));
+
+/*
+var sub = tldjs.getSubdomain(window.location.href);
 
 alert(sub);
+*/
