@@ -37,6 +37,7 @@
     "grunt-babel": "^6.0.0",
     "grunt-postcss": "^0.8.0",
     "grunt-webpack": "^1.0.11",
+    "postcss-center": "^1.0.0",
     "postcss-cssnext": "^2.5.1",
     "postcss-import": "^8.0.2"
   }

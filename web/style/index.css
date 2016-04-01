@@ -12,3 +12,8 @@ body{
   background-color: var(--lighterAlternateColor);
   font-family: 'Questrial', sans-serif;
 }
+
+.fun{
+  left: center;
+  top: center;
+}

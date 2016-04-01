@@ -43,7 +43,7 @@ module.exports = function(grunt) {
 
         processors: [
           require("postcss-import")(),
-          require("postcss-import")(),
+          require('postcss-center'),
           require("postcss-cssnext")(),
           require('cssnano')() // minify the result
         ]
