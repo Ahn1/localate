@@ -42,18 +42,21 @@ module.exports = function(grunt) {
         map: true,
 
         processors: [
-          require('autoprefixer')(),
+          require("postcss-import")(),
+          require("postcss-import")(),
+          require("postcss-cssnext")(),
           require('cssnano')() // minify the result
         ]
       },
       dist: {
-        src: 'web/style/*.css',
-        dest: 'dist/style/'
+        src: 'web/style/index.css',
+        dest: 'dist/style/main.css'
       }
     }
 
   });
 
+  grunt.registerTask('server', ['babel']);
   grunt.registerTask('default', ['babel', 'webpack','postcss']);
   grunt.registerTask('web', ['webpack','postcss']);
 

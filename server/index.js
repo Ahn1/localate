@@ -16,6 +16,7 @@ console.log(__dirname)
 app.use(convert(logger()))
 app.use(convert(gzip()));
 app.use(convert(KoaStatic(__dirname + "/../web/", {})));
+app.use(convert(KoaStatic(__dirname + "/../style/", {})));
 app.use(convert(KoaStatic(__dirname + "/../../static/webroot", {})));
 
 
