@@ -1,9 +1,9 @@
-var SHA256 = require("crypto-js/sha256");
+var CryptoJS = require("crypto-js");
 
 export default new class{
 
   GetPwHash(pw){
-    return SHA256(pw);
+    return CryptoJS.SHA256(pw).toString(CryptoJS.enc.Base64);
   }
 
 }

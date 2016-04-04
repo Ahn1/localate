@@ -2,28 +2,51 @@ import mongo from '../db/mongo.js'
 import config from "../../../config.js"
 import Featurebase from "./base.js"
 
-export default new class extends Featurebase{
+import pw from '../Infrastructure/pw.js'
+import collections from '../db/collections.js'
 
-  async GetUser(username, ignoreActive){
+export default new class extends Featurebase {
+
+  async GetUser(username, ignoreInactive) {
     await this.connect();
 
-    let user = await mongo.findOne(this.db,"users",{"name": username});
+    let user = await mongo.findOne(this.db, collections.Users, {
+      "name": username
+    });
 
-    if(!user)
+    if (!user)
       return false;
 
-    if(user.deleted)
+    if (user.deleted)
       return false;
 
-    if(!user.active && !ignoreActive)
+    if (!user.active && !ignoreInactive)
       return false;
 
     return user;
   }
 
-  async Register(username, options){
+  async Register(username, options) {
+    await this.connect();
 
+    let existingUser = await this.GetUser(username, true);
 
+    console.log(existingUser);
+
+    if (existingUser)
+      return false;
+
+    let hasehdPw = pw.GetPwHash(options.password);
+
+    console.log(hasehdPw);
+
+    var res = await mongo.insert(this.db, collections.Users, {
+      "name": username,
+      password: hasehdPw,
+      active: true
+    });
+
+    console.log(res);
 
   }
 

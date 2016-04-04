@@ -9,6 +9,7 @@ import gzip from 'koa-gzip';
 import config from "../../config.js"
 import dbSetup from "./db/setup.js";
 import auth from "./Features/auth.js";
+import user from "./Features/users.js";
 import api from "./api/api.js"
 
 var router = require('koa-router')();
@@ -29,23 +30,13 @@ api(router,app);
 app.use(router.routes());
 
 async function Run() {
-
-
-
     console.log(process.argv);
 
     var dbSetupExecutor = new dbSetup();
     await dbSetupExecutor.Execute();
 
-
-
     console.log(`Listen on Port ${config.server.listenPort}`)
     app.listen(config.server.listenPort);
-
-    for (let i = 0; i < 10000000; i++) {
-        let re = await auth.Login("alex", "");
-        console.log(`Auth ${re} ${i}`);
-    }
 };
 
 
