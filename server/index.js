@@ -4,11 +4,14 @@ import Koa from 'Koa'
 import KoaStatic from 'koa-static'
 import convert from 'koa-convert'
 import logger from 'koa-logger'
-import gzip from  'koa-gzip';
+import gzip from 'koa-gzip';
 
 import config from "../../config.js"
 import dbSetup from "./db/setup.js";
 import auth from "./Features/auth.js";
+import api from "./api/api.js"
+
+var router = require('koa-router')();
 
 // Koa application is now a class and requires the new operator.
 const app = new Koa();
@@ -22,13 +25,27 @@ app.use(convert(KoaStatic(__dirname + "/../web/", {})));
 app.use(convert(KoaStatic(__dirname + "/../style/", {})));
 app.use(convert(KoaStatic(__dirname + "/../../static/webroot", {})));
 
+api(router,app);
+app.use(router.routes());
 
-async function Run(){
-  var dbSetupExecutor = new dbSetup();
-  await dbSetupExecutor.Execute();
+async function Run() {
 
-  console.log(`Listen on Port ${config.server.listenPort}`)
-  app.listen(config.server.listenPort);
+
+
+    console.log(process.argv);
+
+    var dbSetupExecutor = new dbSetup();
+    await dbSetupExecutor.Execute();
+
+
+
+    console.log(`Listen on Port ${config.server.listenPort}`)
+    app.listen(config.server.listenPort);
+
+    for (let i = 0; i < 10000000; i++) {
+        let re = await auth.Login("alex", "");
+        console.log(`Auth ${re} ${i}`);
+    }
 };
 
 

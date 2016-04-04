@@ -1,7 +1,5 @@
 import mongo from '../db/mongo.js'
-
 import config from "../../../config.js"
-
 import Featurebase from "./base.js"
 
 export default new class extends Featurebase{
@@ -22,4 +20,11 @@ export default new class extends Featurebase{
 
     return user;
   }
+
+  async Register(username, options){
+
+
+
+  }
+
 }
