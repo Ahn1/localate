@@ -20,6 +20,17 @@ app.use(convert(KoaStatic(__dirname + "/../style/", {})));
 app.use(convert(KoaStatic(__dirname + "/../../static/webroot", {})));
 
 
+import dbl from "./db/setup.js";
+var db = new dbl();
+
+var f = async function(){
+  await db.Connect();
+  await db.SetupIndex();
+}
+
+f();
+
+
 /*
 // uses async arrow functions
 app.use(async (ctx, next) => {
