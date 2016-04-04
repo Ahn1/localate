@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "grunt && node ./dist/server/index.js"
+    "start": "grunt && node ./dist/server/index.js",
+    "server": "grunt server && node ./dist/server/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,13 +20,18 @@
   "homepage": "https://github.com/Ahn1/localate#readme",
   "dependencies": {
     "babel-polyfill": "^6.7.4",
+    "crypto-js": "^3.1.6",
+    "datejs": "0.0.2",
     "grunt": "^0.4.5",
     "koa": "^2.0.0",
     "koa-convert": "^1.2.0",
     "koa-gzip": "^0.1.0",
     "koa-logger": "^1.3.0",
+    "koa-router": "^7.0.1",
     "koa-static": "^2.0.0",
     "load-grunt-tasks": "^3.4.1",
+    "mongodb": "^2.1.14",
+    "rand-token": "^0.2.1",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
   },
