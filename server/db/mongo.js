@@ -28,6 +28,46 @@ class Mongo{
     });
   }
 
+  insert(db,collection, doc){
+    return new Promise((res,rej) => {
+      db.collection(collection).insert(doc, (err,result) => {
+        if(err){
+          rej(err);
+        }
+        else{
+          res(result);
+        }
+      });
+    });
+  }
+
+
+  findOne(db,collection, query){
+    return new Promise((res,rej) => {
+      db.collection(collection).findOne(query, (err,doc) => {
+        if(err){
+          rej(err);
+        }
+        else{
+          res(doc);
+        }
+      });
+    });
+  }
+
+  find(db,collection, query){
+    return new Promise((res,rej) => {
+      db.collection(collection).find(query, (err,doc) => {
+        if(err){
+          rej(err);
+        }
+        else{
+          res(doc);
+        }
+      });
+    });
+  }
+
 }
 
 export default new Mongo();

@@ -8,6 +8,7 @@ import gzip from  'koa-gzip';
 
 import config from "../../config.js"
 import dbSetup from "./db/setup.js";
+import auth from "./Features/auth.js";
 
 // Koa application is now a class and requires the new operator.
 const app = new Koa();
@@ -23,11 +24,8 @@ app.use(convert(KoaStatic(__dirname + "/../../static/webroot", {})));
 
 
 async function Run(){
-  console.log(config)
-
   var dbSetupExecutor = new dbSetup();
   await dbSetupExecutor.Execute();
-
 
   console.log(`Listen on Port ${config.server.listenPort}`)
   app.listen(config.server.listenPort);
