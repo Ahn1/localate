@@ -2,10 +2,24 @@ import mongo from '../db/mongo.js'
 
 import config from "../../../config.js"
 
-export default new class{
+import Featurebase from "./base.js"
 
-  async GetUser(username){
-    let db = await mongo.connect(config.server.db);
-    return mongo.findOne(db,"users",{"name": username});
+export default new class extends Featurebase{
+
+  async GetUser(username, ignoreActive){
+    await this.connect();
+
+    let user = await mongo.findOne(this.db,"users",{"name": username});
+
+    if(!user)
+      return false;
+
+    if(user.deleted)
+      return false;
+
+    if(!user.active && !ignoreActive)
+      return false;
+
+    return user;
   }
 }

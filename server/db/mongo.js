@@ -15,9 +15,9 @@ class Mongo{
     });
   }
 
-  ensureIndex(db, collection, index){
+  ensureIndex(db, collection, index, options){
     return new Promise((res,rej) => {
-      db.collection(collection).ensureIndex(index, (err,index) => {
+      db.collection(collection).ensureIndex(index,options, (err,index) => {
         if(err){
           rej(err);
         }

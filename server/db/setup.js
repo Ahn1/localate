@@ -13,7 +13,9 @@ class DbSetup {
     await mongo.ensureIndex(db,"users",{"name":1});
 
     //Auth
-    await mongo.ensureIndex(db,"auth",{"username":1, "token":1});
+    await mongo.ensureIndex(db,"auth",{"username":1});
+    await mongo.ensureIndex(db,"auth",{"token":1});
+    await mongo.ensureIndex(db,"auth",{ "expireAt": 1 },{ expireAfterSeconds: 0 });
   }
 
 }

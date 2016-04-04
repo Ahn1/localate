@@ -5,22 +5,22 @@ import mongo from '../db/mongo.js'
 import config from "../../../config.js"
 
 import users from "./users.js"
+import Featurebase from "./base.js"
 
-export default new class{
+require('datejs')
+
+export default new class Auth extends Featurebase {
+
   async Login(username, password){
-    var user = await users.GetUser(username);
+    await this.connect();
 
-    console.log(user)
+    var user = await users.GetUser(username);
 
     if(!user)
       return false;
 
-      console.log("try insert auth")
-
-    let db = await mongo.connect(config.server.db);
-
-    let token = uid(50);
-    await mongo.insert(db,"auth", {"username": username, token});
+    let token = uid(35);
+    await mongo.insert(this.db,"auth", {"username": username, token, expireAt: new Date().addMonths(12)});
 
     return token;
   }
