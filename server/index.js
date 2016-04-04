@@ -4,8 +4,10 @@ import Koa from 'Koa'
 import KoaStatic from 'koa-static'
 import convert from 'koa-convert'
 import logger from 'koa-logger'
-
 import gzip from  'koa-gzip';
+
+import config from "../../config.js"
+import dbSetup from "./db/setup.js";
 
 // Koa application is now a class and requires the new operator.
 const app = new Koa();
@@ -20,15 +22,19 @@ app.use(convert(KoaStatic(__dirname + "/../style/", {})));
 app.use(convert(KoaStatic(__dirname + "/../../static/webroot", {})));
 
 
-import dbl from "./db/setup.js";
-var db = new dbl();
+async function Run(){
+  console.log(config)
 
-var f = async function(){
-  await db.Connect();
-  await db.SetupIndex();
-}
+  var dbSetupExecutor = new dbSetup();
+  await dbSetupExecutor.Execute();
 
-f();
+
+  console.log(`Listen on Port ${config.server.listenPort}`)
+  app.listen(config.server.listenPort);
+};
+
+
+Run();
 
 
 /*
@@ -49,5 +55,3 @@ app.use(async ctx => {
   ctx.body = user; // ctx instead of this
 });
 */
-
-app.listen(3000);

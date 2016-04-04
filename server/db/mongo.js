@@ -22,7 +22,7 @@ class Mongo{
           rej(err);
         }
         else{
-          res(db);
+          res(index);
         }
       });
     });
