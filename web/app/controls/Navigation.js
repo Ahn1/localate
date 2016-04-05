@@ -4,7 +4,7 @@ export default class Navigation extends Component {
 
   render() {
     return (
-      <ul class="navigation">
+      <ul className="navigation">
         <li>
           <a href="#">Home</a>
         </li>

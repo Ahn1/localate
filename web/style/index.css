@@ -9,11 +9,6 @@
 
 body{
   margin: 0px 0px 0px 0px;
-  background-color: var(--lighterAlternateColor);
+  background-color: var(--lightColor);
   font-family: 'Questrial', sans-serif;
-}
-
-.fun{
-  left: center;
-  top: center;
 }
