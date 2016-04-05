@@ -30,8 +30,6 @@ api(router,app);
 app.use(router.routes());
 
 async function Run() {
-    console.log(process.argv);
-
     var dbSetupExecutor = new dbSetup();
     await dbSetupExecutor.Execute();
 
