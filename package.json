@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "grunt && node ./dist/server/index.js",
-    "server": "grunt server && node ./dist/server/index.js"
+    "server": "grunt server && node ./dist/server/index.js",
+    "web": "grunt web && node ./dist/server/index.js"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,7 @@
     "babel-preset-react": "^6.5.0",
     "cssnano": "^3.5.2",
     "grunt-babel": "^6.0.0",
+    "grunt-contrib-watch": "^1.0.0",
     "grunt-postcss": "^0.8.0",
     "grunt-webpack": "^1.0.11",
     "postcss-center": "^1.0.0",
