@@ -29,7 +29,7 @@
                 border-bottom: none;
             }
         }
-        &:hover {
+        &:hover, &.active {
             background: var(--lighterAlternateColor);
         }
     }
