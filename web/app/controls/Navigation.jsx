@@ -1,11 +1,26 @@
 import {Component, PropTypes} from 'react';
 import {Link} from 'react-router'
 
+import ApplicationStore from '../stores/ApplicationStore.js'
+
 export default class Navigation extends Component {
+
+    constructor(){
+      super()
+
+      ApplicationStore.on("InitApp",(options) => {
+        this.setState({title: options.name});
+      })
+
+      this.state = {title: ""};
+    }
 
     render() {
         return (
             <ul className="navigation">
+                <li>
+                    <a>{this.state.title}</a>
+                </li>
                 <li>
                     <Link to={`/home`} activeClassName="active">Home</Link>
                 </li>
