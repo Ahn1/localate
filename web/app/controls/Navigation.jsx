@@ -1,4 +1,5 @@
 import {Component, PropTypes} from 'react';
+import {Router, Route, Link, browserHistory} from 'react-router'
 
 export default class Navigation extends Component {
 
@@ -6,7 +7,7 @@ export default class Navigation extends Component {
     return (
       <ul className="navigation">
         <li>
-          <a href="#">Home</a>
+          <Link to={`/home`}>Home</Link>
         </li>
         <li>
           <a href="#">About</a>

@@ -21,5 +21,4 @@ export default function(router, app) {
             Cluster: GetClusterInfo()
         };
     });
-
 }

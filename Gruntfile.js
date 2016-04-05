@@ -34,7 +34,7 @@ module.exports = function(grunt) {
                     }]
                 },
                 resolve: {
-                    extensions: ['', '.js']
+                    extensions: ['', '.js', '.jsx']
                 }
             }
         },
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
                 tasks: ['postcss']
             },
             js: {
-                files: ['web/app/**/*.js'],
+                files: ['web/app/**/*.js','web/app/**/*.jsx'],
                 tasks: ['webpack']
             }
         },
