@@ -1,3 +1,5 @@
+var webpack = require("webpack");
+
 module.exports = function(grunt) {
 
     require('load-grunt-tasks')(grunt);
@@ -35,7 +37,12 @@ module.exports = function(grunt) {
                 },
                 resolve: {
                     extensions: ['', '.js', '.jsx']
-                }
+                },
+                /*plugins: [new webpack.optimize.UglifyJsPlugin({
+                    compress: {
+                        warnings: false
+                    }
+                })]*/
             }
         },
 
@@ -65,7 +72,7 @@ module.exports = function(grunt) {
                 tasks: ['postcss']
             },
             js: {
-                files: ['web/app/**/*.js','web/app/**/*.jsx'],
+                files: ['web/app/**/*.js', 'web/app/**/*.jsx'],
                 tasks: ['webpack']
             }
         },
