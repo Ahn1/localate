@@ -9,7 +9,7 @@ export default class App extends Component {
         return (
             <div>
                 <Navigation></Navigation>
-                <div>{this.props.children}</div>
+                <div className="siteContent">{this.props.children}</div>
             </div>
         );
     }

@@ -25,7 +25,7 @@ export default class Navigation extends Component {
                     <Link to={`/home`} activeClassName="active">Home</Link>
                 </li>
                 <li>
-                    <Link to={`/about`} activeClassName="active">About</Link>
+                    <Link to={`/Addspot`} activeClassName="active">Ort hinzufügen</Link>
                 </li>
                 <li>
                     <Link to={`/products`} activeClassName="active">Produkte</Link>
