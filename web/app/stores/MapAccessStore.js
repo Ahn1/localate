@@ -9,7 +9,7 @@ export default new class MapAccessStore extends StoreBase {
 
     constructor() {
         super();
-        MapStore.on("ChangeMap", () => RefreshAuth());
+        MapStore.on("ChangeMap", (o) => this.RefreshAuth(o));
         // Listen on change user
 
         this.changing = false;

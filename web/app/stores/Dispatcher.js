@@ -3,13 +3,6 @@ import {Dispatcher} from 'flux';
 export default new class MyDispatcher extends Dispatcher{
   constructor(){
     super();
-
-    this.register((e) => this.HandleInternal(e))
-    console.log(this);
-  }
-
-  HandleInternal(e){
-
   }
 
   async WaitForEvent(eventType){

@@ -1,15 +1,15 @@
 import {Component, PropTypes} from 'react';
 import {Link} from 'react-router'
 
-import ApplicationStore from '../stores/ApplicationStore.js'
+import AppStateStore from '../stores/AppStateStore.js'
 
 export default class Navigation extends Component {
 
     constructor(){
       super()
 
-      ApplicationStore.on("InitApp",(options) => {
-        this.setState({title: options.name});
+      AppStateStore.on("ChangeState",(options) => {
+        this.setState({title: options.map});
       })
 
       this.state = {title: ""};

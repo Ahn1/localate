@@ -9,7 +9,7 @@ export default new class MapStore extends StoreBase {
 
   constructor() {
     super();
-    ApplicationStore.on("InitApp", () => InitMap());
+    ApplicationStore.on("InitApp", (o) => this.InitApp(o));
   }
 
   InitApp(options){
