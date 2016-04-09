@@ -4,6 +4,7 @@ var AppDispatcher = require('./Dispatcher.js');
 import EventEmitter from 'events';
 
 import MapStore from './MapStore.js'
+import LoginStore from './LoginStore.js'
 
 export default new class MapAccessStore extends StoreBase {
 

@@ -10,7 +10,7 @@ export default class StoreBase extends EventEmitter {
   Register(method,action){
     AppDispatcher.register((payload) => {
       if(payload.type == method)
-        action();
+        action(payload);
     });
   }
 

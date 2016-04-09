@@ -10,6 +10,10 @@ export default new class extends Featurebase {
   async GetUser(username, ignoreInactive) {
     await this.connect();
 
+    console.log(this.db);
+
+
+
     let user = await mongo.findOne(this.db, collections.Users, {
       "name": username
     });

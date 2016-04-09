@@ -31,7 +31,7 @@ export default class Navigation extends Component {
                     <Link to={`/products`} activeClassName="active">Produkte</Link>
                 </li>
                 <li>
-                    <Link to={`/contact`} activeClassName="active">Kontakt</Link>
+                    <Link to={`/login`} activeClassName="active">Login</Link>
                 </li>
             </ul>
         );

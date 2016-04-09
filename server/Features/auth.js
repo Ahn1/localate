@@ -16,11 +16,15 @@ export default new class Auth extends Featurebase {
 
     var user = await users.GetUser(username);
 
+    console.log(user);
+
     if(!user)
       return false;
 
     let token = uid(35);
     await mongo.insert(this.db,"auth", {"username": username, token, expireAt: new Date().addMonths(12)});
+
+    console.log(token);
 
     return token;
   }

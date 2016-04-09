@@ -3,6 +3,7 @@ import {Component, PropTypes} from 'react';
 import App from './App'
 import Home from './Home'
 import Addspot from './Addspot'
+import Login from './Login'
 
 import {Router, Route, Link, hashHistory} from 'react-router'
 
@@ -14,6 +15,7 @@ export default class Menu extends Component {
                 <Route path="/" component={App}>
                     <Route path="home" component={Home}/>
                     <Route path="Addspot" component={Addspot}/>
+                    <Route path="login" component={Login}/>
                     <Route path='*' handler={Home}/>
                 </Route>
             </Router>
