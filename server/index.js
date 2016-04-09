@@ -1,6 +1,6 @@
 require("babel-polyfill");
 
-import Koa from 'Koa'
+import Koa from 'koa'
 import KoaStatic from 'koa-static'
 import convert from 'koa-convert'
 import logger from 'koa-logger'
