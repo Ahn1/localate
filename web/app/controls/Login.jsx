@@ -1,8 +1,9 @@
 import {Component, PropTypes} from 'react';
-import {Router, Route, Link, browserHistory} from 'react-router'
+import {Router, Route, Link, hashHistory} from 'react-router'
 import DocumentTitle from "react-document-title"
 
 import actions from '../stores/actions.js'
+import LoginStore from '../stores//LoginStore.js'
 
 export default class Login extends Component {
 
@@ -12,6 +13,13 @@ export default class Login extends Component {
             name: "",
             password: ""
         }
+
+        LoginStore.on("LoginChanged",(e) => this.onLogin(e));
+
+    }
+
+    onLogin(){
+      hashHistory.push('/');
     }
 
     handleChange(sender) {
