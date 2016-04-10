@@ -1,18 +1,22 @@
 import {Component, PropTypes} from 'react';
 import {Link} from 'react-router'
+import If from './shared/If.jsx'
 
 import AppStateStore from '../stores/AppStateStore.js'
 
 export default class Navigation extends Component {
 
-    constructor(){
-      super()
+    constructor() {
+        super()
 
-      AppStateStore.on("ChangeState",(options) => {
-        this.setState({title: options.map});
-      })
+        AppStateStore.on("ChangeState", (options) => {
+            this.setState({title: options.map, isLoggedIn: options.loggedIn});
+        })
 
-      this.state = {title: ""};
+        this.state = {
+            title: "",
+            isLoggedIn: false
+        };
     }
 
     render() {
@@ -30,9 +34,11 @@ export default class Navigation extends Component {
                 <li>
                     <Link to={`/products`} activeClassName="active">Produkte</Link>
                 </li>
-                <li>
-                    <Link to={`/login`} activeClassName="active">Login</Link>
-                </li>
+                <If test={!this.state.isLoggedIn}>
+                    <li>
+                        <Link to={`/login`} activeClassName="active">Login</Link>
+                    </li>
+                </If>
             </ul>
         );
     }

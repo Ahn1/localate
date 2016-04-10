@@ -23,7 +23,7 @@ export default new class LoginStore extends StoreBase {
     {
       cookies.set('token', auth.token);
       this.isLoggedIn = true;
-      this.emit("OnLoggedIn")
+      this.emit("LoginChanged")
     }
     else
     {

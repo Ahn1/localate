@@ -11,7 +11,7 @@ export default new class MapAccessStore extends StoreBase {
     constructor() {
         super();
         MapStore.on("ChangeMap", (o) => this.RefreshAuth(o));
-        LoginStore.on("OnLoggedIn", (o) => this.RefreshLogin(o))
+        LoginStore.on("LoginChanged", (o) => this.RefreshLogin(o))
 
         // Listen on change user
 
