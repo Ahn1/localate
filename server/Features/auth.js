@@ -1,4 +1,7 @@
-import {uid} from 'rand-token'
+import {
+    uid
+} from 'rand-token'
+import winston from 'winston';
 
 import mongo from '../db/mongo.js'
 
@@ -7,25 +10,33 @@ import config from "../../../config.js"
 import users from "./users.js"
 import Featurebase from "./base.js"
 
+
 require('datejs')
 
 export default new class Auth extends Featurebase {
 
-  async Login(username, password){
-    await this.connect();
+    async Login(username, password) {
 
-    var user = await users.GetUser(username);
+        winston.debug(`Try to login "${username}"`)
 
-    console.log(user);
+        await this.connect();
 
-    if(!user)
-      return false;
+        var user = await users.GetUser(username);
 
-    let token = uid(35);
-    await mongo.insert(this.db,"auth", {"username": username, token, expireAt: new Date().addMonths(12)});
+        if (!user) {
+            winston.debug(`Login failed. User not found`)
+            return false;
+        }
 
-    console.log(token);
+        let token = uid(35).toString();
+        await mongo.insert(this.db, "auth", {
+            "username": username,
+            token,
+            expireAt: new Date().addMonths(12)
+        });
 
-    return token;
-  }
+        winston.debug(`Got a token and logged in. ${token}`)
+
+        return token;
+    }
 }

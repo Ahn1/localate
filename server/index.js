@@ -14,12 +14,12 @@ import api from "./api/api.js"
 
 var router = require('koa-router')();
 
-// Koa application is now a class and requires the new operator.
+import winston from 'winston';
+
+winston.level = 'debug';
+winston.info(`Start localate in ${__dirname}`)
+
 const app = new Koa();
-
-console.log(__dirname)
-
-
 app.use(convert(logger()))
 app.use(convert(gzip()));
 app.use(convert(KoaStatic(__dirname + "/../web/", {})));
