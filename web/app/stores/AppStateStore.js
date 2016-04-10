@@ -16,14 +16,13 @@ export default new class AppStateStore extends StoreBase {
     }
 
     EmitChange(){
-      this.emit("ChangeState",{map: this.map.name});
+      this.emit("ChangeState",{map: this.map.name, access: this.access});
     }
 
     async ChangeMapAccess(options) {
       this.access = options;
       this.map = options.map;
 
-      console.log("cma")
       this.EmitChange();
     }
 

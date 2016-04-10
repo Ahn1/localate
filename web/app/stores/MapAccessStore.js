@@ -11,9 +11,21 @@ export default new class MapAccessStore extends StoreBase {
     constructor() {
         super();
         MapStore.on("ChangeMap", (o) => this.RefreshAuth(o));
+        LoginStore.on("OnLoggedIn", (o) => this.RefreshLogin(o))
+
         // Listen on change user
 
         this.changing = false;
+    }
+
+    async RefreshLogin(options) {
+        this.emit("ChangingMapAccess", {})
+        this.access = {
+            write: LoginStore.isLoggedIn,
+            read: LoginStore.isLoggedIn,
+            map: this.map
+        };
+        this.emit("ChangeMapAccess", this.access);
     }
 
     async RefreshAuth(options) {
@@ -30,8 +42,8 @@ export default new class MapAccessStore extends StoreBase {
 
         // Todo: Get Access by current user
         this.access = {
-            write: true,
-            read: true,
+            write: LoginStore.isLoggedIn,
+            read: LoginStore.isLoggedIn,
             map: this.map
         };
 
