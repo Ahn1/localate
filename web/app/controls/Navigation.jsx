@@ -28,9 +28,11 @@ export default class Navigation extends Component {
                 <li>
                     <Link to={`/home`} activeClassName="active">Home</Link>
                 </li>
-                <li>
-                    <Link to={`/Addspot`} activeClassName="active">Ort hinzufügen</Link>
-                </li>
+                <If test={this.state.isLoggedIn}>
+                    <li>
+                        <Link to={`/Addspot`} activeClassName="active">Ort hinzufügen</Link>
+                    </li>
+                </If>
                 <li>
                     <Link to={`/products`} activeClassName="active">Produkte</Link>
                 </li>

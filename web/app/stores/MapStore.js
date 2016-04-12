@@ -15,6 +15,8 @@ export default new class MapStore extends StoreBase {
   InitApp(options){
     this.map = {name: options.name};
 
+    this.map = options.name;
+
     this.emit("ChangeMap", {name: this.map})
   }
 

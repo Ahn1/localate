@@ -25,6 +25,7 @@
     "datejs": "0.0.2",
     "grunt": "^0.4.5",
     "koa": "^2.0.0",
+    "koa-bodyparser": "^3.0.0",
     "koa-convert": "^1.2.0",
     "koa-gzip": "^0.1.0",
     "koa-logger": "^1.3.0",

@@ -14,7 +14,7 @@ export default new class ApplicationStore extends StoreBase {
 
   OnInitApp(){
     let subdomain = tldjs.getSubdomain(window.location.href );
-    subdomain = subdomain || "Testdomain";
+    subdomain = subdomain || "Testmap";
 
     this.emit("InitApp", {name: subdomain})
   }

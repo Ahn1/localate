@@ -19,4 +19,14 @@ export default class Actions {
             options
         });
     }
+    static AddSpot(options) {
+        dispatcher.dispatch({
+            type: 'ADD_SPOT',
+            options
+        });
+    }
+
+
+
+
 }

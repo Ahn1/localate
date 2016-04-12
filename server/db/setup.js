@@ -21,6 +21,9 @@ class DbSetup {
     await mongo.ensureIndex(db,"map",{ "name": 1 },{unique: true});
     await mongo.ensureIndex(db,"map",{ "path": 1 },{unique: true});
     await mongo.ensureIndex(db,"map",{ "owner": 1 });
+
+    await mongo.ensureIndex(db,"spots",{ "map": 1 });
+    await mongo.ensureIndex(db,"spots",{ "location": "2dsphere" });
   }
 
 }

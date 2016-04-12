@@ -1,4 +1,3 @@
-
 import mongo from '../db/mongo.js'
 
 import config from "../../../config.js"
@@ -10,10 +9,22 @@ require('datejs')
 
 export default new class Spot extends Featurebase {
 
-  async AddSpot(username, password){
-    await this.connect();
+    async AddSpot(map, options) {
+        await this.connect();
 
-    //Todo
 
-  }
+        var res = await mongo.insert(this.db, "spots", {
+            "name": options.name,
+            location: {
+                type: "Point",
+                coordinates: [options.lat, options.long]
+            },
+            desc: options.desc,
+            map
+        });
+
+
+        return res;
+
+    }
 }

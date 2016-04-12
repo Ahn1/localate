@@ -13,6 +13,7 @@ import user from "./Features/users.js";
 import api from "./api/api.js"
 
 var router = require('koa-router')();
+var bodyParser = require('koa-bodyparser');
 
 import winston from 'winston';
 
@@ -22,6 +23,7 @@ winston.info(`Start localate in ${__dirname}`)
 const app = new Koa();
 app.use(convert(logger()))
 app.use(convert(gzip()));
+app.use(convert(bodyParser()));
 app.use(convert(KoaStatic(__dirname + "/../web/", {})));
 app.use(convert(KoaStatic(__dirname + "/../style/", {})));
 app.use(convert(KoaStatic(__dirname + "/../../static/webroot", {})));
