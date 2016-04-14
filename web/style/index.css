@@ -15,3 +15,7 @@ body{
   background-color: var(--lightColor);
   font-family: var(--font);
 }
+
+.dino{
+  height: 400px;
+}
