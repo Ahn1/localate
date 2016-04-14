@@ -4,6 +4,7 @@ import DocumentTitle from "react-document-title"
 
 import actions from '../stores/actions.js'
 import SpotStore from '../stores/SpotStore.js'
+import PositionStore from '../stores/PositionStore.js'
 
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 
@@ -12,16 +13,34 @@ export default class Home extends Component {
     constructor() {
         super();
 
-        let startPosition = {lat: 52.508883, long: 13.393697}
+        let startPosition = {
+            lat: 52.516096,
+            long: 13.401204
+        }
 
         this.state = {
             name: "",
             lat: startPosition.lat,
             long: startPosition.long,
             focusLat: startPosition.lat,
-            focusLong: startPosition.long,
-            desc: ""
+            focusLong: startPosition.long
         }
+
+        this.Init();
+    }
+
+    async Init() {
+
+        if (!PositionStore.loaded) {
+            let waiter = PositionStore.WaitForEvent("Loaded");
+            PositionStore.Load();
+            await waiter;
+        }
+
+        if (PositionStore.hasPosition) {
+            this.setState({lat: PositionStore.lat, long: PositionStore.long, focusLat: PositionStore.lat, focusLong: PositionStore.long})
+        }
+
     }
 
     handleChange(sender) {
@@ -35,13 +54,13 @@ export default class Home extends Component {
         actions.AddSpot(this.state);
     }
 
-    onMouseMoved(e){
-      this.setState({lat: e.latlng.lat, long: e.latlng.lng});
+    onMouseMoved(e) {
+        this.setState({lat: e.latlng.lat, long: e.latlng.lng});
     }
 
     render() {
         return (
-            <div>
+            <div >
                 <input type="text" value={this.state.name} data-field="name" placeholder="name" onChange={(e) => this.handleChange(e)}/>
 
                 <Map center={[this.state.focusLat, this.state.focusLong]} zoom={13} style={{
@@ -56,8 +75,6 @@ export default class Home extends Component {
                         </Popup>
                     </Marker>
                 </Map>
-
-                <input type="text" value={this.state.desc} data-field="desc" placeholder="desc" onChange={(e) => this.handleChange(e)}/>
                 <input type="button" onClick={() => this.submit()} value="Hinzufügen"/>
             </div>
         );

@@ -19,7 +19,6 @@ export default new class Spot extends Featurebase {
                 type: "Point",
                 coordinates: [options.lat, options.long]
             },
-            desc: options.desc,
             map
         });
 

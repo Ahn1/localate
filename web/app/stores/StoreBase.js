@@ -14,6 +14,13 @@ export default class StoreBase extends EventEmitter {
     });
   }
 
+  async RaiseAndWait(method, eventType)
+  {
+    let awaiter = this.WaitForEvent(eventType);
+    method();
+    await awaiter;
+  }
+
   async WaitForEvent(eventType){
     return new Promise((res,rej) => {
       console.log("CREATE PROMISE")

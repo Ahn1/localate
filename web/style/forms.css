@@ -1,0 +1,17 @@
+input[type="text"],textarea {
+    transition: all 0.30s ease-in-out;
+    outline: none;
+    background: #fff;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    padding: 10px 10px 10px 10px;
+    color: #555;
+    &:focus, &.focus {
+        box-shadow: 0 0 5px #43D1AF;
+        border: 1px solid #43D1AF;
+    }
+}
+textarea {
+  width: 100%;
+  font-family: var(--font);
+}

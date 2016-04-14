@@ -6,7 +6,6 @@ async function AddSpot(ctx, res) {
 
     let newSpot = {
       name: ctx.request.body.name,
-      desc: ctx.request.body.desc,
       lat: parseFloat(ctx.request.body.lat),
       long: parseFloat(ctx.request.body.long)
     }

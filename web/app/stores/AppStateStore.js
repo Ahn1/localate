@@ -6,6 +6,7 @@ import EventEmitter from 'events';
 import MapAccessStore from './MapAccessStore.js'
 import LoginStore from './LoginStore.js'
 
+
 export default new class AppStateStore extends StoreBase {
 
     constructor() {

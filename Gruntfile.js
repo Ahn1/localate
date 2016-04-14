@@ -38,7 +38,7 @@ module.exports = function(grunt) {
                 resolve: {
                     extensions: ['', '.js', '.jsx']
                 },
-                devtool: 'eval-source-map'
+                devtool: 'source-map'
                 /*plugins: [new webpack.optimize.UglifyJsPlugin({
                     compress: {
                         warnings: false
