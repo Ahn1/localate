@@ -2,8 +2,6 @@ import spot from '../Features/spot.js'
 
 
 async function AddSpot(ctx, res) {
-    console.log(ctx.request.body);
-
     let newSpot = {
       name: ctx.request.body.name,
       lat: parseFloat(ctx.request.body.lat),
