@@ -11,6 +11,7 @@ export default new class LoginStore extends StoreBase {
   constructor() {
     super();
     this.Register("LOGIN",(e) => {this.OnLogin(e)});
+    this.Register("LOGOFF",(e) => {this.OnLogoff(e)});
 
     this.isLoggedIn = false;
 
@@ -25,6 +26,15 @@ export default new class LoginStore extends StoreBase {
         this.isLoggedIn = true;
         this.emit("LoginChanged")
       }
+  }
+
+  async OnLogoff(){
+    cookies.set('token', "");
+    this.isLoggedIn = false;
+
+    //Todo: also logout on server
+
+    this.emit("LoginChanged")
   }
 
   async OnLogin({options}){

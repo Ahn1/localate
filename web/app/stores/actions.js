@@ -13,6 +13,12 @@ export default class Actions {
             options
         });
     }
+    static logoff(options) {
+        process.nextTick(() => dispatcher.dispatch({
+            type: 'LOGOFF',
+            options
+        }));
+    }
     static MapLoadComplete(options) {
         dispatcher.dispatch({
             type: 'MAP_LOADED',
