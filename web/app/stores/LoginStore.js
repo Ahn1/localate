@@ -13,6 +13,18 @@ export default new class LoginStore extends StoreBase {
     this.Register("LOGIN",(e) => {this.OnLogin(e)});
 
     this.isLoggedIn = false;
+
+    this.Init()
+  }
+
+  async Init(){
+      let token = cookies.get('token');
+
+      if(token)
+      {
+        this.isLoggedIn = true;
+        this.emit("LoginChanged")
+      }
   }
 
   async OnLogin({options}){
@@ -29,9 +41,6 @@ export default new class LoginStore extends StoreBase {
     {
         alert("NO")
     }
-
-
-
   }
 
 }()
