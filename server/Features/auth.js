@@ -4,9 +4,8 @@ import {
 import winston from 'winston';
 
 import mongo from '../db/mongo.js'
-
+import pw from '../Infrastructure/pw.js'
 import config from "../../../config.js"
-
 import users from "./users.js"
 import Featurebase from "./base.js"
 
@@ -26,6 +25,14 @@ export default new class Auth extends Featurebase {
         if (!user) {
             winston.debug(`Login failed. User not found`)
             return false;
+        }
+
+        let hasehdPw = pw.GetPwHash(password);
+
+        if(hasehdPw !== user.password)
+        {
+          winston.debug(`Login failed. Wrong password`)
+          return false;
         }
 
         let token = uid(35).toString();
