@@ -30,15 +30,18 @@ export default class Home extends Component {
     }
 
     async Init() {
-
         if (!PositionStore.loaded) {
             let waiter = PositionStore.WaitForEvent("Loaded");
             PositionStore.Load();
             await waiter;
-        }
-
-        if (PositionStore.hasPosition) {
             this.setState({lat: PositionStore.lat, long: PositionStore.long, focusLat: PositionStore.lat, focusLong: PositionStore.long})
+            return
+        } else {
+            // In dem Fall ist die Map noch nicht in dem Dom gemounted. Hier muss der Init state gesetzt werden
+            this.state.lat = PositionStore.lat;
+            this.state.long = PositionStore.long;
+            this.state.focusLat = PositionStore.lat;
+            this.state.focusLong = PositionStore.long;
         }
 
     }
