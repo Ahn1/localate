@@ -23,7 +23,6 @@ export default class StoreBase extends EventEmitter {
 
   async WaitForEvent(eventType){
     return new Promise((res,rej) => {
-      console.log("CREATE PROMISE")
       let callback = (e) => {
         this.removeListener(eventType, callback);
         res(e);
