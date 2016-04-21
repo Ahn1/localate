@@ -36,7 +36,7 @@ export default class Login extends Component {
     render() {
         return (
             <DocumentTitle title='Login'>
-                <div>
+                <div className="form-inline">
                     <input type="text" value={this.state.name} data-field="name" onChange={(e) => this.handleChange(e)}/>
                     <input type="text" value={this.state.password} data-field="password" onChange={(e) => this.handleChange(e)}/>
                     <input type="button" onClick={() => this.submit()} value="Einloggen"/>
