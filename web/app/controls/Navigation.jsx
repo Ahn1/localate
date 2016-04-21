@@ -1,5 +1,5 @@
 import {Component, PropTypes} from 'react';
-import {Link,hashHistory} from 'react-router'
+import {Link, hashHistory} from 'react-router'
 import If from './shared/If.jsx'
 
 import AppStateStore from '../stores/AppStateStore.js'
@@ -12,19 +12,23 @@ export default class Navigation extends Component {
         super()
 
         AppStateStore.on("ChangeState", (options) => {
-            this.setState({title: options.map, isLoggedIn: options.loggedIn});
+            console.log(options);
+            this.setState({title: options.map, isLoggedIn: options.loggedIn, write: options.access.write, read: options.access.read});
+
         })
 
         this.state = {
             title: "",
-            isLoggedIn: false
+            isLoggedIn: false,
+            read: false,
+            write: false
         };
     }
 
-    async Logout(){
-      actions.logoff();
-      await LoginStore.WaitForEvent("LoginChanged")
-      hashHistory.push('/');
+    async Logout() {
+        actions.logoff();
+        await LoginStore.WaitForEvent("LoginChanged")
+        hashHistory.push('/');
     }
 
     render() {
@@ -37,10 +41,18 @@ export default class Navigation extends Component {
                     <Link to={`/home`} activeClassName="active">Home</Link>
                 </li>
 
-                <If test={this.state.isLoggedIn}>
+                <If test={this.state.read}>
                     <li>
-                        <Link to={`/Addspot`} activeClassName="active">Ort hinzufügen</Link>
+                        <Link to={`/map`} activeClassName="active">Karte</Link>
                     </li>
+                </If>
+
+                <If test={this.state.isLoggedIn}>
+                    <If test={this.state.write}>
+                        <li>
+                            <Link to={`/Addspot`} activeClassName="active">Ort hinzufügen</Link>
+                        </li>
+                    </If>
                 </If>
                 <If test={this.state.isLoggedIn}>
                     <li>
