@@ -39,4 +39,24 @@ export default new class Spot extends Featurebase {
         return res;
 
     }
+
+    async GetSpots(map, boundingBox) {
+        await this.connect();
+
+        boundingBox = [[52.675499, 13.76134],[52.33812, 13.0884]];
+
+        var res = await mongo.find(this.db, "spots", {
+            location: {
+                $geoWithin: {
+                    $box: [
+                        [boundingBox[0][1], boundingBox[0][0]],
+                        [boundingBox[1][1], boundingBox[1][0]],
+                    ]
+                }
+            }
+        });
+
+        let docs = await res.readAll()
+        console.log(docs);
+    }
 }
