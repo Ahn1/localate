@@ -14,7 +14,7 @@ export default new class Spot extends Featurebase {
     async AddSpot(map, options) {
         await this.connect();
 
-        var geoInfo = await geo.ReverseSearch(options.lat,options.long);
+        var geoInfo = await geo.ReverseSearch(options.lat, options.long);
 
         console.log(geoInfo);
 
@@ -22,15 +22,15 @@ export default new class Spot extends Featurebase {
             "name": options.name,
             location: {
                 type: "Point",
-                coordinates: [options.lat, options.long]
+                coordinates: [options.long, options.lat]
             },
             address: {
-              number: geoInfo.house_number || null,
-              road: geoInfo.road || null,
-              postcode: geoInfo.postcode || null,
-              city: geoInfo.city || null,
-              state: geoInfo.state || null,
-              city_district: geoInfo.city_district || null,
+                number: geoInfo.house_number || null,
+                road: geoInfo.road || null,
+                postcode: geoInfo.postcode || null,
+                city: geoInfo.city || null,
+                state: geoInfo.state || null,
+                city_district: geoInfo.city_district || null,
             },
             map
         });
