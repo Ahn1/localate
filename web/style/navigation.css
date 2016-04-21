@@ -4,14 +4,18 @@
     background: var(--alternateColor);
     display: flex;
     justify-content: flex-end;
+    align-items: stretch;
     @media (--screen-big) {
         justify-content: flex-end;
     }
     @media (--screen-medium) {
-        justify-content: space-around;
+        & li {
+            flex-grow: 1;
+        }
+        justify-content: space-between;
     }
     @media (--screen-small) {
-        justify-content: space-around;
+        justify-content: space-between;
         flex-flow: column wrap;
         padding: 0;
     }
@@ -20,8 +24,8 @@
         display: block;
         padding: 1em;
         color: white;
+        text-align: center;
         @media (--screen-small) {
-            text-align: center;
             padding: 10px;
             border-top: 1px solid rgba(255, 255, 255, 0.3);
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);

@@ -19,7 +19,7 @@ export default new class AppStateStore extends StoreBase {
 
     EmitChange() {
         this.emit("ChangeState", {
-            map: this.map.name,
+            map: this.map,
             access: this.access,
             loggedIn: this.loggedIn
         });
