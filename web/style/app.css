@@ -1,6 +1,7 @@
 .siteContent {
     left: center;
     width: 600px;
+    overflow: auto;
     @media (--screen-small) {
         width: 100%;
     }

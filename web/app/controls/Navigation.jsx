@@ -34,7 +34,7 @@ export default class Navigation extends Component {
     render() {
         return (
             <ul className="navigation">
-                <li>
+                <li className="navigationTitle">
                     <a>{this.state.title}</a>
                 </li>
                 <li>

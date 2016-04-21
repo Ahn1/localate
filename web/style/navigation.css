@@ -1,4 +1,5 @@
 .navigation {
+    width: 100%;
     list-style: none;
     margin: 0;
     background: var(--alternateColor);
@@ -36,5 +37,22 @@
         &:hover, &.active {
             background: var(--lighterAlternateColor);
         }
+    }
+}
+.navigationTitle {
+    order: -1;
+    margin-right: auto;
+    text-align: center;
+    & a {
+        background: initial;
+    }
+    & a:hover {
+        background: initial;
+    }
+    & a.active {
+        background: initial;
+    }
+    @media (--screen-small) {
+        margin-right: initial;
     }
 }
