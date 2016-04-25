@@ -19,6 +19,12 @@ export default class Actions {
             options
         }));
     }
+    static LoadOverviewSpots(options){
+      process.nextTick(() => dispatcher.dispatch({
+          type: 'LOADOVERVIEWSPOTS',
+          options
+      }));
+    }
     static MapLoadComplete(options) {
         dispatcher.dispatch({
             type: 'MAP_LOADED',
