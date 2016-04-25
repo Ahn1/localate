@@ -7,6 +7,7 @@ import config from "../../../config.js"
 import users from "./users.js"
 import Featurebase from "./base.js"
 
+import winston from 'winston';
 require('datejs')
 
 export default new class Spot extends Featurebase {
@@ -43,7 +44,9 @@ export default new class Spot extends Featurebase {
     async GetSpots(map, boundingBox) {
         await this.connect();
 
-        boundingBox = [[52.675499, 13.76134],[52.33812, 13.0884]];
+        //boundingBox = [[52.675499, 13.76134],[52.33812, 13.0884]];
+
+        winston.debug(`Get spots for ${map} on ${boundingBox}`)
 
         var res = await mongo.find(this.db, "spots", {
             location: {
@@ -57,6 +60,7 @@ export default new class Spot extends Featurebase {
         });
 
         let docs = await res.readAll()
-        console.log(docs);
+
+        return docs;
     }
 }
