@@ -7,6 +7,8 @@ import SpotStore from '../stores/SpotStore.js'
 import PositionStore from '../stores/PositionStore.js'
 import MapOverviewStore from '../stores/MapOverviewStore.js'
 
+import MapMarkersLayer from './shared/MapMarkersLayer'
+
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 
 export default class Home extends Component {
@@ -66,17 +68,6 @@ export default class Home extends Component {
     }
 
     render() {
-
-      let markers = this.state.spots.map(spot => {
-          return (
-              <Marker position={[spot.location.coordinates[1], spot.location.coordinates[0]]}>
-                  <Popup>
-                      <span>{spot.name}</span>
-                  </Popup>
-              </Marker>
-          );
-      });
-
         return (
             <div >
                 <input type="text" value={this.state.name} data-field="name" placeholder="name" onChange={(e) => this.handleChange(e)}/>
@@ -87,22 +78,7 @@ export default class Home extends Component {
                     cursor: "pointer"
                 }} onClick={(e) => this.onMouseMoved(e)}>
                     <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
-                    <Marker position={[this.state.lat, this.state.long]}>
-                        <Popup>
-                            <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
-                        </Popup>
-                    </Marker>
-
-                    {this.state.spots.map(spot => {
-                        return (
-                            <Marker key={spot._id} position={[spot.location.coordinates[1], spot.location.coordinates[0]]}>
-                                <Popup>
-                                    <span>{spot.name}</span>
-                                </Popup>
-                            </Marker>
-                        );
-                    }) || <span />}
-
+                    <MapMarkersLayer box={this.state.box} />
                 </Map>
                 <input type="button" onClick={() => this.submit()} value="Hinzufügen"/>
             </div>

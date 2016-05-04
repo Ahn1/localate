@@ -8,6 +8,8 @@ import MapOverviewStore from '../stores/MapOverviewStore.js'
 import MapStore from '../stores/MapStore.js'
 import AppStateStore from '../stores/AppStateStore.js'
 
+import MapMarkersLayer from './shared/MapMarkersLayer'
+
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 
 export default class MapControl extends Component {
@@ -39,33 +41,15 @@ export default class MapControl extends Component {
     }
 
     render() {
-        let markers = this.state.spots.map(spot => {
-            return (
-                <Marker position={[spot.location.coordinates[1], spot.location.coordinates[0]]}>
-                    <Popup>
-                        <span>{spot.name}</span>
-                    </Popup>
-                </Marker>
-            );
-        });
-
         return (
             <div>
                 <Map bounds={this.state.bounds} zoom={13} style={{
                     height: "400px",
                     width: "100%",
                     cursor: "pointer"
-                }} onClick={(e) => this.onMouseMoved(e)}>
+                }}>
                     <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'/>
-                    {this.state.spots.map(spot => {
-                        return (
-                            <Marker key={spot._id} position={[spot.location.coordinates[1], spot.location.coordinates[0]]}>
-                                <Popup>
-                                    <span>{spot.name}</span>
-                                </Popup>
-                            </Marker>
-                        );
-                    }) || <span/>}
+                    <MapMarkersLayer box={this.state.box} />
                 </Map>
             </div>
         );
