@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "grunt && node ./dist/server/index.js",
     "server": "grunt server && node ./dist/server/index.js",
-    "web": "grunt web && node ./dist/server/index.js"
+    "web": "grunt web && node ./dist/server/index.js",
+    "rebuild": "npm install && grunt"
   },
   "repository": {
     "type": "git",
