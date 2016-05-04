@@ -78,6 +78,11 @@ export default class Home extends Component {
                     cursor: "pointer"
                 }} onClick={(e) => this.onMouseMoved(e)}>
                     <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
+                    <Marker position={[this.state.lat, this.state.long]}>
+                        <Popup>
+                            <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
+                        </Popup>
+                    </Marker> 
                     <MapMarkersLayer box={this.state.box} />
                 </Map>
                 <input type="button" onClick={() => this.submit()} value="Hinzufügen"/>
