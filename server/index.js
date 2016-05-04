@@ -28,6 +28,16 @@ app.use(convert(KoaStatic(__dirname + "/../web/", {})));
 app.use(convert(KoaStatic(__dirname + "/../style/", {})));
 app.use(convert(KoaStatic(__dirname + "/../../static/webroot", {})));
 
+app.use(async (ctx, next) => {
+  try {
+    await next();
+  } catch (err) {
+    console.log(err);
+    ctx.body = { message: err.message };
+    ctx.status = err.status || 500;
+  }
+});
+
 api(router,app);
 app.use(router.routes());
 
@@ -44,15 +54,6 @@ Run();
 
 /*
 // uses async arrow functions
-app.use(async (ctx, next) => {
-  try {
-    await next();
-  } catch (err) {
-    console.log(err);
-    ctx.body = { message: err.message };
-    ctx.status = err.status || 500;
-  }
-});
 
 app.use(async ctx => {
   let user = await Promise.resolve("Hello")
