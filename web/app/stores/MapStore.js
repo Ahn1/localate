@@ -13,8 +13,6 @@ export default new class MapStore extends StoreBase {
   }
 
   async InitApp(options){
-    console.log("MapInfoLoaded")
-
     this.map = options.name;
 
     var mapRequest = await fetch(`/map/getMap?map=${this.map}`);

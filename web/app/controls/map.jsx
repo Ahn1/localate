@@ -28,13 +28,11 @@ export default class MapControl extends Component {
     }
 
     async Init() {
+        this.setState({bounds: MapStore.mapInfo.Bounds})
+
         actions.LoadOverviewSpots({box: this.state.box});
         var spots = await MapOverviewStore.WaitForEvent("GotSpots");
-        console.log("GS")
-        console.log(spots)
         this.setState({spots: spots})
-
-        this.setState({bounds: MapStore.mapInfo.Bounds})
     }
 
     render() {
@@ -55,8 +53,7 @@ export default class MapControl extends Component {
                     width: "100%",
                     cursor: "pointer"
                 }} onClick={(e) => this.onMouseMoved(e)}>
-                    <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'/>
-                    {this.state.spots.map(spot => {
+                    <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'/> {this.state.spots.map(spot => {
                         return (
                             <Marker key={spot._id} position={[spot.location.coordinates[1], spot.location.coordinates[0]]}>
                                 <Popup>
@@ -64,7 +61,7 @@ export default class MapControl extends Component {
                                 </Popup>
                             </Marker>
                         );
-                    }) || <span />}
+                    }) || <span/>}
                 </Map>
             </div>
         );

@@ -12,7 +12,6 @@ export default class Navigation extends Component {
         super()
 
         AppStateStore.on("ChangeState", (options) => {
-            console.log(options);
             this.setState({title: options.map, isLoggedIn: options.loggedIn, write: options.access.write, read: options.access.read});
 
         })
