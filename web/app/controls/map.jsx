@@ -6,6 +6,7 @@ import If from './shared/If.jsx'
 import actions from '../stores/actions.js'
 import MapOverviewStore from '../stores/MapOverviewStore.js'
 import MapStore from '../stores/MapStore.js'
+import AppStateStore from '../stores/AppStateStore.js'
 
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 
@@ -28,6 +29,8 @@ export default class MapControl extends Component {
     }
 
     async Init() {
+        await AppStateStore.EnsureInitialized();
+
         this.setState({bounds: MapStore.mapInfo.Bounds})
 
         actions.LoadOverviewSpots({box: this.state.box});
@@ -53,7 +56,8 @@ export default class MapControl extends Component {
                     width: "100%",
                     cursor: "pointer"
                 }} onClick={(e) => this.onMouseMoved(e)}>
-                    <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'/> {this.state.spots.map(spot => {
+                    <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'/>
+                    {this.state.spots.map(spot => {
                         return (
                             <Marker key={spot._id} position={[spot.location.coordinates[1], spot.location.coordinates[0]]}>
                                 <Popup>
