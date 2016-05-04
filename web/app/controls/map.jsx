@@ -12,7 +12,7 @@ import MapMarkersLayer from './shared/MapMarkersLayer'
 
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 
-export default class MapControl extends Component {
+class MapControl extends Component {
 
     constructor() {
         super();
@@ -49,9 +49,11 @@ export default class MapControl extends Component {
                     cursor: "pointer"
                 }}>
                     <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'/>
-                    <MapMarkersLayer box={this.state.box} />
+                    <MapMarkersLayer box={this.state.box}/>
                 </Map>
             </div>
         );
     }
 }
+
+export default MapControl;
