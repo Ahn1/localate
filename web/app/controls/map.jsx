@@ -5,10 +5,11 @@ import If from './shared/If.jsx'
 
 import actions from '../stores/actions.js'
 import MapOverviewStore from '../stores/MapOverviewStore.js'
+import MapStore from '../stores/MapStore.js'
 
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 
-export default class Home extends Component {
+export default class MapControl extends Component {
 
     constructor() {
         super();
@@ -29,11 +30,14 @@ export default class Home extends Component {
     async Init() {
         actions.LoadOverviewSpots({box: this.state.box});
         var spots = await MapOverviewStore.WaitForEvent("GotSpots");
+        console.log("GS")
+        console.log(spots)
         this.setState({spots: spots})
+
+        this.setState({bounds: MapStore.mapInfo.Bounds})
     }
 
     render() {
-
         let markers = this.state.spots.map(spot => {
             return (
                 <Marker position={[spot.location.coordinates[1], spot.location.coordinates[0]]}>
@@ -45,9 +49,8 @@ export default class Home extends Component {
         });
 
         return (
-            <div >
-                <Map center={[this.state.box[0][0], this.state.box[0][1]
-                ]} zoom={13} style={{
+            <div>
+                <Map bounds={this.state.bounds} zoom={13} style={{
                     height: "400px",
                     width: "100%",
                     cursor: "pointer"

@@ -35,4 +35,32 @@ export default new class {
         }
     }
 
+    GetBoundingBox(elements, latSelector, longSelector) {
+        let lowLat = latSelector(elements[0]);
+        let hightLat = latSelector(elements[0]);
+        let lowLong = longSelector(elements[0]);
+        let hightLong = longSelector(elements[0]);
+
+        elements.forEach((e, i) => {
+            let lat = latSelector(e);
+            let long = longSelector(e);
+
+            if (lowLat > lat)
+                lowLat = lat;
+            else if (hightLat < lat)
+                hightLat = lat;
+
+            if (lowLong > long)
+                lowLong = long;
+            else if (hightLong < long)
+                hightLong = long;
+        });
+
+        return [[hightLat, lowLong], [lowLat,hightLong]]
+    }
+
 }
+
+
+52.504510, 13.084076
+52.498272, 13.086083

@@ -41,9 +41,14 @@ app.use(async (ctx, next) => {
 api(router,app);
 app.use(router.routes());
 
+import map from "./Features/map.js"
+
 async function Run() {
     var dbSetupExecutor = new dbSetup();
     await dbSetupExecutor.Execute();
+
+    console.log("GM")
+    await map.GetMap("Testmap");
 
     console.log(`Listen on Port ${config.server.listenPort}`)
     app.listen(config.server.listenPort);

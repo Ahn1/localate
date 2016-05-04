@@ -12,10 +12,15 @@ export default new class MapStore extends StoreBase {
     ApplicationStore.on("InitApp", (o) => this.InitApp(o));
   }
 
-  InitApp(options){
-    this.map = {name: options.name};
+  async InitApp(options){
+    console.log("MapInfoLoaded")
 
     this.map = options.name;
+
+    var mapRequest = await fetch(`/map/getMap?map=${this.map}`);
+    var mapInfo = await mapRequest.json();
+
+    this.mapInfo = mapInfo;
 
     this.emit("ChangeMap", {name: this.map})
   }

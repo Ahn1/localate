@@ -56,7 +56,8 @@ export default new class Spot extends Featurebase {
                         [boundingBox[1][1], boundingBox[1][0]],
                     ]
                 }
-            }
+            },
+            map: map
         });
 
         let docs = await res.readAll()

@@ -5,6 +5,7 @@ import DocumentTitle from "react-document-title"
 import actions from '../stores/actions.js'
 import SpotStore from '../stores/SpotStore.js'
 import PositionStore from '../stores/PositionStore.js'
+import MapOverviewStore from '../stores/MapOverviewStore.js'
 
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 
@@ -19,6 +20,13 @@ export default class Home extends Component {
         }
 
         this.state = {
+            spots: [],
+            box: [
+                [
+                    52.675499, 13.76134
+                ],
+                [52.33812, 13.0884]
+            ],
             name: "",
             lat: startPosition.lat,
             long: startPosition.long,
@@ -26,7 +34,7 @@ export default class Home extends Component {
             focusLong: startPosition.long
         }
 
-        this.Init();
+        process.nextTick(() => this.Init());
     }
 
     async Init() {
@@ -34,16 +42,12 @@ export default class Home extends Component {
             let waiter = PositionStore.WaitForEvent("Loaded");
             PositionStore.Load();
             await waiter;
-            this.setState({lat: PositionStore.lat, long: PositionStore.long, focusLat: PositionStore.lat, focusLong: PositionStore.long})
-            return
-        } else {
-            // In dem Fall ist die Map noch nicht in dem Dom gemounted. Hier muss der Init state gesetzt werden
-            this.state.lat = PositionStore.lat;
-            this.state.long = PositionStore.long;
-            this.state.focusLat = PositionStore.lat;
-            this.state.focusLong = PositionStore.long;
         }
+        this.setState({lat: PositionStore.lat, long: PositionStore.long, focusLat: PositionStore.lat, focusLong: PositionStore.long})
 
+        actions.LoadOverviewSpots({box: this.state.box});
+        var spots = await MapOverviewStore.WaitForEvent("GotSpots");
+        this.setState({spots: spots})
     }
 
     handleChange(sender) {
@@ -62,6 +66,17 @@ export default class Home extends Component {
     }
 
     render() {
+
+      let markers = this.state.spots.map(spot => {
+          return (
+              <Marker position={[spot.location.coordinates[1], spot.location.coordinates[0]]}>
+                  <Popup>
+                      <span>{spot.name}</span>
+                  </Popup>
+              </Marker>
+          );
+      });
+
         return (
             <div >
                 <input type="text" value={this.state.name} data-field="name" placeholder="name" onChange={(e) => this.handleChange(e)}/>
@@ -77,6 +92,17 @@ export default class Home extends Component {
                             <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
                         </Popup>
                     </Marker>
+
+                    {this.state.spots.map(spot => {
+                        return (
+                            <Marker key={spot._id} position={[spot.location.coordinates[1], spot.location.coordinates[0]]}>
+                                <Popup>
+                                    <span>{spot.name}</span>
+                                </Popup>
+                            </Marker>
+                        );
+                    }) || <span />}
+
                 </Map>
                 <input type="button" onClick={() => this.submit()} value="Hinzufügen"/>
             </div>

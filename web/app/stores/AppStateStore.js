@@ -17,6 +17,13 @@ export default new class AppStateStore extends StoreBase {
         this.access = null;
     }
 
+    async EnsureInitialized() {
+      if(!this.initialized){
+        await this.WaitForEvent("ChangeState");
+      }
+    }
+
+
     EmitChange() {
         this.emit("ChangeState", {
             map: this.map,
@@ -29,6 +36,7 @@ export default new class AppStateStore extends StoreBase {
         this.access = options;
         this.map = options.map;
         this.loggedIn = LoginStore.isLoggedIn;
+        this.initialized = true;
 
         this.EmitChange();
     }
