@@ -7,7 +7,7 @@ import logger from 'koa-logger'
 import gzip from 'koa-gzip';
 
 import config from "../../config.js"
-import db from "./Infrastructure/db/db.js";
+import db from "./Infrastructure/db/default.js";
 import auth from "./Features/auth.js";
 import user from "./Features/users.js";
 import api from "./api/api.js"

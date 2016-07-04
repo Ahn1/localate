@@ -1,6 +1,6 @@
 import geo from "../Infrastructure/geo.js"
 
-import db from '../Infrastructure/db/db.js'
+import db from '../Infrastructure/db/default.js'
 
 import config from "../../../config.js"
 

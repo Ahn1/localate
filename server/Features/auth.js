@@ -3,7 +3,7 @@ import {
 } from 'rand-token'
 import winston from 'winston';
 
-import db from '../Infrastructure/db/db.js'
+import db from '../Infrastructure/db/default.js'
 import pw from '../Infrastructure/pw.js'
 import config from "../../../config.js"
 import users from "./users.js"

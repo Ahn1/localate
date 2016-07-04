@@ -1,4 +1,4 @@
-import db from '../Infrastructure/db/db.js'
+import db from '../Infrastructure/db/default.js'
 import config from "../../../config.js"
 import Featurebase from "./base.js"
 
