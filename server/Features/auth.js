@@ -3,7 +3,7 @@ import {
 } from 'rand-token'
 import winston from 'winston';
 
-import mongo from '../db/mongo.js'
+import db from '../Infrastructure/db/db.js'
 import pw from '../Infrastructure/pw.js'
 import config from "../../../config.js"
 import users from "./users.js"
@@ -36,7 +36,7 @@ export default new class Auth extends Featurebase {
         }
 
         let token = uid(35).toString();
-        await mongo.insert(this.db, "auth", {
+        await db.mongo.insert(this.db, "auth", {
             "username": username,
             token,
             expireAt: new Date().addMonths(12)

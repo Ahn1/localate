@@ -2,7 +2,7 @@ import {ObjectId, MongoClient} from 'mongodb'
 
 import mongo from './mongo'
 
-import config from "../../../config.js"
+import config from "../../../../config.js"
 
 class DbSetup {
 

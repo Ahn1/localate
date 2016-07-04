@@ -7,7 +7,7 @@ import logger from 'koa-logger'
 import gzip from 'koa-gzip';
 
 import config from "../../config.js"
-import dbSetup from "./db/setup.js";
+import db from "./Infrastructure/db/db.js";
 import auth from "./Features/auth.js";
 import user from "./Features/users.js";
 import api from "./api/api.js"
@@ -41,14 +41,10 @@ app.use(async (ctx, next) => {
 api(router,app);
 app.use(router.routes());
 
-import map from "./Features/map.js"
-
 async function Run() {
-    var dbSetupExecutor = new dbSetup();
+  console.log(db);
+    var dbSetupExecutor = new db.setup();
     await dbSetupExecutor.Execute();
-
-    console.log("GM")
-    await map.GetMap("Testmap");
 
     console.log(`Listen on Port ${config.server.listenPort}`)
     app.listen(config.server.listenPort);

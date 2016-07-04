@@ -1,6 +1,6 @@
 import geo from "../Infrastructure/geo.js"
 
-import mongo from '../db/mongo.js'
+import db from '../Infrastructure/db/db.js'
 
 import config from "../../../config.js"
 
@@ -19,7 +19,7 @@ export default new class Spot extends Featurebase {
 
         console.log(geoInfo);
 
-        var res = await mongo.insert(this.db, "spots", {
+        var res = await db.mongo.insert(this.db, "spots", {
             "name": options.name,
             location: {
                 type: "Point",
@@ -48,7 +48,7 @@ export default new class Spot extends Featurebase {
 
         winston.debug(`Get spots for ${map} on ${boundingBox}`)
 
-        var res = await mongo.find(this.db, "spots", {
+        var res = await db.mongo.find(this.db, "spots", {
             location: {
                 $geoWithin: {
                     $box: [

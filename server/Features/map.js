@@ -1,6 +1,6 @@
 import geo from "../Infrastructure/geo.js"
 
-import mongo from '../db/mongo.js'
+import db from '../Infrastructure/db/db.js'
 
 import config from "../../../config.js"
 
@@ -21,7 +21,7 @@ export default new class Map extends Featurebase {
         winston.debug(`Get map ${map}`)
 
         winston.debug("Get Spots")
-        var res = await mongo.find(this.db, "spots", {
+        var res = await db.mongo.find(this.db, "spots", {
             map: map
         });
         let docs = await res.readAll()
