@@ -1,9 +1,9 @@
-const initState = {title: "MyApp"};
+const initState = {applicationTitle: "MyApp"};
 
 const testFilter = (state = initState, action) => {
   switch (action.type) {
     case 'SET_TITLE':
-      return Object.assign({}, state, {title: action.title})
+      return Object.assign({}, state, {applicationTitle: action.title})
     default:
       return state
   }

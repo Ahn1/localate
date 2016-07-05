@@ -1,9 +1,9 @@
+import { connect } from 'react-redux'
 
-
-export default () => {
+const navigation = ({applicationTitle}) => {
   return (<ul className="navigation">
     <li className="navigationTitle">
-      <a>Apptitle</a>
+      <a>{applicationTitle}</a>
     </li>
     <li>
       <a>Home</a>
@@ -15,3 +15,14 @@ export default () => {
 
   </ul>)
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    applicationTitle: state.applicationTitle
+  }
+}
+
+
+export default connect(
+  mapStateToProps
+)(navigation)
