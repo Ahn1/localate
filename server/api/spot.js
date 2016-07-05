@@ -9,11 +9,11 @@ async function AddSpot(ctx, res) {
         long: parseFloat(ctx.request.body.long)
     }
 
-    ctx.body = await spot.AddSpot(ctx.request.body.map, newSpot)
+    ctx.body = await spotFeature.AddSpot(ctx.request.body.map, newSpot)
 }
 
 async function SearchSpots(ctx, res) {
-    ctx.body = await spot.GetSpots(ctx.request.query.map, JSON.parse(ctx.request.query.boundingBox));
+    ctx.body = await spotFeature.GetSpots(ctx.request.query.map, JSON.parse(ctx.request.query.boundingBox));
 }
 
 async function Spot(ctx, res) {
