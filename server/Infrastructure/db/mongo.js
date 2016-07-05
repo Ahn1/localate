@@ -74,6 +74,10 @@ class Mongo {
         });
     }
 
+    findOneById(db, collection, id) {
+        return this.findOne(db,collection, {"_id": new ObjectId(id)});
+    }
+
     find(db, collection, query) {
         return new Promise((res, rej) => {
             db.collection(collection).find(query, (err, doc) => {

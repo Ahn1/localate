@@ -64,4 +64,12 @@ export default new class Spot extends Featurebase {
 
         return docs;
     }
+
+    async GetSpotDetails(spotId){
+      await this.connect();
+
+      var res = await db.mongo.findOneById(this.db, "spots", spotId);
+
+      return res;
+    }
 }

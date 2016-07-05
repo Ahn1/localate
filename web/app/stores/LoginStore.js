@@ -38,8 +38,8 @@ export default new class LoginStore extends StoreBase {
   }
 
   async OnLogin({options}){
-    var authRequest = await fetch(`/auth/login?username=${options.name}&password=${options.password}`);
-    var auth = await authRequest.json();
+    var auth = await fetch(`/auth/login?username=${options.name}&password=${options.password}`).then(req => req.json());
+    //var auth = await authRequest.json();
 
     if(auth.success)
     {

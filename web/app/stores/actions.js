@@ -38,6 +38,13 @@ export default class Actions {
         });
     }
 
+    static ChangeSpot(options){
+      dispatcher.dispatch({
+          type: 'CHANGE_SPOT',
+          options
+      });
+    }
+
 
 
 
