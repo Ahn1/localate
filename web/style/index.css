@@ -1,0 +1,21 @@
+@import url(https://fonts.googleapis.com/css?family=Questrial);
+
+@import 'media.css';
+@import 'theme.css';
+@import 'app.css';
+@import 'navigation.css';
+@import 'forms.css';
+
+* {
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0px 0px 0px 0px;
+  background-color: var(--lightColor);
+  font-family: var(--font);
+}
+
+.dino{
+  height: 400px;
+}

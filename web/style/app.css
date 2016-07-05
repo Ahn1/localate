@@ -1,0 +1,11 @@
+.siteContent {
+    left: center;
+    width: 600px;
+    overflow: auto;
+    @media (--screen-small) {
+        width: 100%;
+    }
+    @media (--screen-big) {
+        width: 960px;
+    }
+}
