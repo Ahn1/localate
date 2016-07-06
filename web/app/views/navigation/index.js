@@ -12,7 +12,7 @@ const navigation = ({applicationTitle}) => {
     </li>
 
     <li>
-      <a>Login</a>
+      <Navigationlink>Login</Navigationlink>
     </li>
 
   </ul>)
