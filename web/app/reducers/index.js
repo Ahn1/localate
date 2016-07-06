@@ -1,7 +1,6 @@
 const initState = {
   applicationTitle: "MyApp",
   isLoggedIn: false
-
 };
 
 const testFilter = (state = initState, action) => {

@@ -1,5 +1,8 @@
-var store = require("../web/app/store")
-var actions = require("../web/app/actions/index")
+import "./testbase"
+import  reducers from "../web/app/reducers/index"
 
-
-console.log(store)
+describe('reducers', () => {
+  it('should handle actions', () => {
+    reducers(undefined, {"type":"@@INIT"}).should.containSubset({"applicationTitle":"MyApp","isLoggedIn":false});
+  });
+});
