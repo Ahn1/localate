@@ -1,4 +1,8 @@
-const initState = {applicationTitle: "MyApp"};
+const initState = {
+  applicationTitle: "MyApp",
+  isLoggedIn: false
+
+};
 
 const testFilter = (state = initState, action) => {
   switch (action.type) {

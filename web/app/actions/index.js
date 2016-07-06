@@ -4,3 +4,6 @@ export const setTitle = (newTitle) => {
     title: newTitle
   }
 }
+
+
+//export {default as setTitle} from './SetTitle'
