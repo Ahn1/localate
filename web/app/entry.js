@@ -1,2 +1,4 @@
 require("babel-polyfill")
-require("./index.js")
+var store = require("./index.js").default
+
+module.exports = store;
