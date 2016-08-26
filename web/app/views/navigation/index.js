@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import Navigationlink from './navigationlink'
+import Navigationlink from './navigationLink'
 
 const navigation = ({applicationTitle}) => {
   return (<ul className="navigation">

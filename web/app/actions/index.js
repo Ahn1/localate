@@ -1,2 +1,2 @@
 
-export {default as setTitle} from './SetTitle'
+export {default as setTitle} from './setTitle'

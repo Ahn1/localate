@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 
 import store from './store'
 import App from './Views/App'
+import App from './views/App'
 
 render(
   <Provider store={store}>
