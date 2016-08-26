@@ -1,8 +1,9 @@
 import { connect } from 'react-redux'
 
 import Pagelink from './pageLink'
+import If from '../If'
 
-const navigation = ({applicationTitle}) => {
+const navigation = ({applicationTitle,isLoggedIn}) => {
   return (<ul className="navigation">
     <li className="navigationTitle">
       <a>{applicationTitle}</a>
@@ -11,16 +12,25 @@ const navigation = ({applicationTitle}) => {
       <Pagelink Page="/">Home</Pagelink>
     </li>
 
-    <li>
-      <Pagelink Page="/login">Login</Pagelink>
-    </li>
+    <If test={!isLoggedIn}>
+      <li>
+        <Pagelink Page="/login">Login</Pagelink>
+      </li>
+    </If>
+    <If test={isLoggedIn}>
+      <li>
+        <Pagelink Page="/">Logout</Pagelink>
+      </li>
+    </If>
 
   </ul>)
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(state);
   return {
-    applicationTitle: state.applicationTitle
+    applicationTitle: state.app.applicationTitle,
+    isLoggedIn: state.app.isLoggedIn
   }
 }
 
