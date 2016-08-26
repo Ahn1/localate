@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import Navigationlink from './navigationLink'
+import Pagelink from './pageLink'
 
 const navigation = ({applicationTitle}) => {
   return (<ul className="navigation">
@@ -8,11 +8,11 @@ const navigation = ({applicationTitle}) => {
       <a>{applicationTitle}</a>
     </li>
     <li>
-      <Navigationlink>Home</Navigationlink>
+      <Pagelink Page="/">Home</Pagelink>
     </li>
 
     <li>
-      <Navigationlink>Login</Navigationlink>
+      <Pagelink Page="/login">Login</Pagelink>
     </li>
 
   </ul>)
