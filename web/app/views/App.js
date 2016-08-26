@@ -1,8 +1,6 @@
 import { connect } from 'react-redux'
 import { setTitle } from '../actions'
 
-import Navigation from './navigation'
-
 /*
 const header = (props) => {console.log(props.title); return (<h1 onClick={props.onClick}>{props.title}</h1>)}
 
@@ -33,6 +31,6 @@ export default connect(
 export default () => {
   return (
     <div>
-      <Navigation />
+      ABC
     </div>);
 };
