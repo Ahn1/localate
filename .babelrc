@@ -1,5 +1,5 @@
 {
  "sourceMap": true,
  "presets": ["es2015","react"],
- "plugins": ["syntax-async-functions", "transform-regenerator"]
+ "plugins": ["syntax-async-functions", "transform-regenerator","transform-object-rest-spread","transform-es2015-destructuring"]
 }

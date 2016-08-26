@@ -29,11 +29,11 @@ export default new class Auth extends Featurebase {
 
         let hasehdPw = pw.GetPwHash(password);
 
-        if(hasehdPw !== user.password)
+        /*if(hasehdPw !== user.password)
         {
           winston.debug(`Login failed. Wrong password`)
           return false;
-        }
+        }*/
 
         let token = uid(35).toString();
         await db.mongo.insert(this.db, "auth", {

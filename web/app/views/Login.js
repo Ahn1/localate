@@ -1,1 +1,3 @@
-export default () => {return (<div><h1>LOGIN!!!</h1></div>);}
+import LoginForm from './login/'
+
+export default () => {return (<div><LoginForm></LoginForm></div>);}
