@@ -8,10 +8,10 @@ import Login from './views/Login'
 
 import Masterpage from './views/Masterpage'
 
-import { Router, Route, browserHistory } from 'react-router'
+import { Router, Route, hashHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
-const history = syncHistoryWithStore(browserHistory, store)
+const history = syncHistoryWithStore(hashHistory, store)
 
 render(
   <Provider store={store}>

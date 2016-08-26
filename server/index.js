@@ -4,7 +4,8 @@ import Koa from 'koa'
 import KoaStatic from 'koa-static'
 import convert from 'koa-convert'
 import logger from 'koa-logger'
-import gzip from 'koa-gzip';
+import gzip from 'koa-gzip'
+import send from 'koa-send'
 
 import config from "../../config.js"
 import db from "./Infrastructure/db/default.js";
@@ -28,28 +29,31 @@ app.use(convert(KoaStatic(__dirname + "/../web/", {})));
 app.use(convert(KoaStatic(__dirname + "/../style/", {})));
 app.use(convert(KoaStatic(__dirname + "/../../static/webroot", {})));
 
-app.use(async (ctx, next) => {
-  try {
-    await next();
-  } catch (err) {
-    console.log(err);
-    ctx.body = { message: err.message };
-    ctx.status = err.status || 500;
-  }
+let mode = "web";
+
+app.use(async(ctx, next) => {
+    try {
+        await next();
+    } catch (err) {
+        console.log(err);
+        ctx.body = {
+            message: err.message
+        };
+        ctx.status = err.status || 500;
+    }
 });
 
-api(router,app);
+api(router, app);
 app.use(router.routes());
 
+
 async function Run() {
-  console.log(db);
     var dbSetupExecutor = new db.setup();
     await dbSetupExecutor.Execute();
 
     console.log(`Listen on Port ${config.server.listenPort}`)
     app.listen(config.server.listenPort);
 };
-
 Run();
 
 
