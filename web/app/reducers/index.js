@@ -1,6 +1,7 @@
 const initState = {
     applicationTitle: "MyApp",
-    isLoggedIn: false
+    isLoggedIn: false,
+    form: {}
 };
 
 const testFilter = (state = initState, action) => {
@@ -15,9 +16,19 @@ const testFilter = (state = initState, action) => {
                     [action.name]: action.newValue
                 }
             })
+        case 'RESET_INPUT_FORM':
+            return Object.assign({}, state, {
+                form: {}
+            });
         case 'LOGGED_IN':
             return Object.assign({}, state, {
                 isLoggedIn: true
+            })
+        case 'VALIDATION_ERROR':
+            return Object.assign({}, state, {
+                form: {...state.form,
+                    errors: action.errors
+                }
             })
         default:
             return state

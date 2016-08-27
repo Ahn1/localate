@@ -1,18 +1,20 @@
 import { connect } from 'react-redux'
+import { classSelector } from '../../infrastructure/validation'
 
 import * as Actions from '../../actions/'
 
-const control = ({onSubmit, actions}) => {
+const control = ({onSubmit, actions, classSelector}) => {
   return (
   <div>
-    <input type="text" onInput={actions.changeInput("name")} />
-    <input type="text" onInput={actions.changeInput("pass")}/>
-    <button onClick={onSubmit} />
+    <input type="text" onInput={actions.changeInput("name")} className={classSelector("name")} />
+    <input type="text" onInput={actions.changeInput("pass")} className={classSelector("pass")}/>
+    <button onClick={onSubmit}>Login</button>
   </div>)
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    classSelector: (inputName) => classSelector(state,inputName)
   }
 }
 
