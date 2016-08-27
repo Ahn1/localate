@@ -22,7 +22,8 @@ const testFilter = (state = initState, action) => {
             });
         case 'LOGGED_IN':
             return Object.assign({}, state, {
-                isLoggedIn: true
+                isLoggedIn: true,
+                accessToken: action.token
             })
         case 'VALIDATION_ERROR':
             return Object.assign({}, state, {

@@ -3,18 +3,20 @@ import { classSelector } from '../../infrastructure/validation'
 
 import * as Actions from '../../actions/'
 
-const control = ({onSubmit, actions, classSelector}) => {
+const control = ({onSubmit, actions, classSelector,username,password}) => {
   return (
   <div>
-    <input type="text" onInput={actions.changeInput("name")} className={classSelector("name")} />
-    <input type="text" onInput={actions.changeInput("pass")} className={classSelector("pass")}/>
+    <input type="text" onChange={actions.changeInput("name")} className={classSelector("name")} value={username} />
+    <input type="text" onChange={actions.changeInput("pass")} className={classSelector("pass")} value={password}/>
     <button onClick={onSubmit}>Login</button>
   </div>)
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    classSelector: (inputName) => classSelector(state,inputName)
+    classSelector: (inputName) => classSelector(state,inputName),
+    username: state.app.form.name,
+    password: state.app.form.pass
   }
 }
 

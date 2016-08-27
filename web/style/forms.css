@@ -11,6 +11,11 @@ input[type="text"], textarea {
         border: 1px solid var(--alternateColor);
     }
 }
+
+.input-error{
+  border: 1px solid red !important;
+}
+
 textarea {
     width: 100%;
     font-family: var(--font);
